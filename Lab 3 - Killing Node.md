@@ -57,8 +57,6 @@ Kill the etcd manually and watch the UI auto-heal the etcd instance:
 dcos task exec -it etcd-0-peer kill -9 3
 ```
 
-You may need to refresh brower. Watch as Kubernetes etcd-0 instance is killed and respawned
-
 ### Kill a Kubelet
 Next, lets kill a Kubernetes node to observe auto-healing capabilities:
 
@@ -79,5 +77,3 @@ Kill the kubelet manually and watch the UI auto-heal the kubelet instance:
 ```
 dcos task exec -it kube-node-0-kubelet kill -9 3
 ```
-
-You may need to refresh brower. Watch as Kubernetes Kubelet instance is killed and respawned

@@ -10,8 +10,8 @@ Click in the dialogue box to copy the command based off of your OS:
 
 When prompted for a password:
 ```
-Username: Bootstrapuser
-Password: Deleteme
+Username: bootstrapuser
+Password: deleteme
 ```
 
 Output should look like this:

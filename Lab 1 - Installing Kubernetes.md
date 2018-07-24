@@ -1,4 +1,4 @@
-### Set Up DC/OS Command Line on your Local Machine
+## Set Up DC/OS Command Line on your Local Machine
 
 Set up the DC/OS command line by clicking on the top left and choosing "install CLI"
 
@@ -64,7 +64,7 @@ The output should be a list of nodes in the cluster:
   10.0.2.100   10.0.2.100  94141db5-28df-4194-a1f2-4378214838a7-S4   agent            aws/us-west-2  aws/us-west-2a
 ```
 
-### Do the labs with the Bootstrap as a bastion host:
+## Do the labs with the Bootstrap as a bastion host:
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 
@@ -82,7 +82,8 @@ Follow the steps above on setting up the DC/OS CLI, except use LINUX as your ope
 
 Your instructor will give you a tour of DC/OS UI and catalog. 
 
-### Install Kubernetes 
+## Install Kubernetes 
+To begin we will be deploying Kubernetes v1.10.3. The latest is 1.10.5, however we will first deploy 1.10.3 so that we can show the non-disruptive upgrade to 1.10.5 in a later lab.
 
 To install Kubernetes enter this command into your terminal
 
@@ -128,7 +129,7 @@ When all steps are "COMPLETE", confirm that the "dcos kubernetes" CLI was instal
 dcos kubernetes
 ```
 
-### Install Kubernetes kubectl Command Line
+## Install Kubernetes kubectl Command Line
 
 Install the Kubernetes command line by following instructions [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
@@ -164,7 +165,7 @@ Confirm that kubectl is installed and in path /usr/local/bin (it will say it is 
 kubectl version
 ```
 
-### Connecting kubectl to DC/OS
+## Connecting kubectl to DC/OS
 Deploy Marathon-LB:
 ```
 dcos package install marathon-lb
@@ -217,7 +218,7 @@ Confirm connection:
 kubectl get nodes
 ```
 
-### Kubernetes Dashboard (Official UI of Kubernetes)
+## Kubernetes Dashboard (Official UI of Kubernetes)
 
 To access the dashboard run:
 

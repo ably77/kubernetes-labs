@@ -2,17 +2,26 @@
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 
+Today we will be using the Bootstrap node in your cluster as a jumpbox for our Labs. Normally a user would set this up on their local machine, however today since we are sitting behind some WiFi firewall rules we will use the Bootstrap.
+
+### SSH into your Bootstrap Node
+Navigate to the Lab Assignments spreadsheet that was given to you by your Lab instructor. SSH into the bootstrap using the Public IP
+```
+$ ssh centos@<BOOTSTRAP_PUBLIC_IP>
+Password: me$o$ph3r3_
+```
+
 ### Set Up DC/OS Command Line
 
 Set up the DC/OS command line by clicking on the top left and choosing "install CLI"
 
 ![CLI](https://i.imgur.com/p4kqIj6.png)
 
-Click in the dialogue box too copy the command
+Click in the dialogue box to copy the command. In our case select LINUX:
 
 ![Copy Command](https://i.imgur.com/3rQ2Unj.png)
 
-Paste that command into your Terminal and press enter
+Paste that command into your Bootstrap SSH terminal and press enter
 
 Confirm that dcos is installed and connected to your cluster by running following command
 

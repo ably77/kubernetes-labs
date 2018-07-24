@@ -13,6 +13,8 @@ The raw dataset we will be using in our load generator is from (here)https://git
 ### Architecture
 
 We will simulate an incoming real-time data stream by using the `load-generator.yaml` below that is a docker container built to send data to Confluent Kafka running on DC/OS:
+
+Save this app definition below as `load-generator.yaml`:
 ```
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -34,6 +36,8 @@ spec:
 ```
 
 The airline prediction microservice `airline-prediction.yaml` below is a docker container built to read directly off of the DC/OS Kafka broker endpoints to make analytic predictions on flight status:
+
+Save this app definition below as `airline-prediction.yaml`
 ```
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -77,7 +81,7 @@ Deploy the predictive streaming application defined in the Architecture section 
 kubectl create -f airline-prediction.yaml
 ```
 
-Navigate to the K8s UI:
+Navigate to the K8s UI to see the log output of the running app:
 
 If you haven't already, run:
 ```
@@ -106,6 +110,28 @@ Flight Input:1999,10,14,3,741,730,912,849,PS,1451,NA,91,79,NA,23,11,SAN,SFO,447,
 Label (aka prediction) is flight departure delayed: NO
 Class probabilities: 0.5955978728809052,0.40440212711909485
 #####################
+```
+
+Alternatively you can also use the `kubectl log` command:
+```
+$ kubectl get pods
+
+$ kubectl logs -f kafka-streams-<PodID>
+```
+
+### Cleanup
+```
+$ kubectl get deployments
+
+$ kubectl delete deployment kafka-streams
+
+$ kubectl delete deployment kafka-streams-workload-generator
+
+$ kubectl get deployments
+
+$ kubectl get pods
+
+$ dcos package uninstall confluent-kafka
 ```
 
 ### Congratulations! You just deployed a microservice application on DC/OS that easily connects to a Confluent Kafka dataservice running on the same cluster!

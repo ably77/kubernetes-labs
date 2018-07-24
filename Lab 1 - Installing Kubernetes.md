@@ -112,9 +112,8 @@ Deploy Marathon-LB:
 dcos package install marathon-lb
 ```
 
-kubectl-proxy service:
+Save this json as `kubectl-proxy.json` on your local machine:
 ```
-$ cat kubectl-proxy.json
 {
   "id": "/kubectl-proxy",
   "instances": 1,
@@ -140,7 +139,7 @@ $ cat kubectl-proxy.json
 }
 ```
 
-Deploy kubectl-proxy service:
+Deploy the kubectl-proxy service:
 ```
 dcos marathon app add kubectl-proxy.json
 ```

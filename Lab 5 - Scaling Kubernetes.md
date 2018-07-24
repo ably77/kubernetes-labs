@@ -28,7 +28,7 @@ Use an editor such as vi to change the config file and update the "node_count" t
     "high_availability": false,
     "network_provider": "dcos",
     "node_count": 2,
-    "public_node_count": 0,
+    "public_node_count": 1,
     "reserved_resources": {
       "kube_cpus": 2,
       "kube_disk": 10240,

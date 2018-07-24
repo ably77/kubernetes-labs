@@ -74,7 +74,7 @@ $ dcos task exec -it kube-node-0-kubelet ps ax
 
 Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the terminal so you can see the components in the DC/OS UI. Use the search bar to search for kube-node-0
 
-Kill the etcd manually and watch the UI auto-heal the etcd instance:
+Kill the kubelet manually and watch the UI auto-heal the kubelet instance:
 
 ```
 dcos task exec -it kube-node-0-kubelet kill -9 3

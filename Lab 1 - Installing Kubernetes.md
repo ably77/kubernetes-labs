@@ -68,7 +68,7 @@ The output should be a list of nodes in the cluster:
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 
-Today we will be using the Bootstrap node in your cluster as a jumpbox for our Labs. Normally a user would set this up on their local machi$
+You should use this option if stuck behind firewall rules that are out of your control. Note that if you use the Bootstrap node for these labs the Kubernetes dashboard will not work by default, unless you set something up like a VNC server
 
 ### SSH into your Bootstrap Node
 Navigate to the Lab Assignments spreadsheet that was given to you by your Lab instructor. SSH into the bootstrap using the Public IP

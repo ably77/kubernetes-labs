@@ -90,6 +90,10 @@ To install Kubernetes enter this command into your terminal
 ```
 dcos package install kubernetes --package-version=1.1.0-1.10.3
 ```
+**NOTE:** If you attempt to install Kubernetes from the GUI, install the CLI on your local machine with the following command:
+```
+dcos package install kubernetes --cli --package-version=1.1.0-1.10.3
+```
 
 You can see the installation runbook automation and status of installation of each component with this command
 

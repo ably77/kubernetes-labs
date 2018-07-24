@@ -1,27 +1,14 @@
-### Access the Cluster
-
-The instructor will give you access to IP address and credentials that you will need to SSH into.
-
-Today we will be using the Bootstrap node in your cluster as a jumpbox for our Labs. Normally a user would set this up on their local machine, however today since we are sitting behind some WiFi firewall rules we will use the Bootstrap.
-
-### SSH into your Bootstrap Node
-Navigate to the Lab Assignments spreadsheet that was given to you by your Lab instructor. SSH into the bootstrap using the Public IP
-```
-$ ssh centos@<BOOTSTRAP_PUBLIC_IP>
-Password: me$o$ph3r3_
-```
-
-### Set Up DC/OS Command Line
+### Set Up DC/OS Command Line on your Local Machine
 
 Set up the DC/OS command line by clicking on the top left and choosing "install CLI"
 
 ![CLI](https://i.imgur.com/p4kqIj6.png)
 
-Click in the dialogue box to copy the command. In our case select LINUX:
+Click in the dialogue box to copy the command based off of your OS:
 
 ![Copy Command](https://i.imgur.com/3rQ2Unj.png)
 
-Paste that command into your Bootstrap SSH terminal and press enter. When prompted for a password:
+When prompted for a password:
 ```
 Username: Bootstrapuser
 Password: Deleteme
@@ -76,6 +63,20 @@ The output should be a list of nodes in the cluster:
   10.0.0.101   10.0.0.101  94141db5-28df-4194-a1f2-4378214838a7-S0   agent            aws/us-west-2  aws/us-west-2a  
   10.0.2.100   10.0.2.100  94141db5-28df-4194-a1f2-4378214838a7-S4   agent            aws/us-west-2  aws/us-west-2a
 ```
+
+### Do the labs with the Bootstrap as a bastion host:
+
+The instructor will give you access to IP address and credentials that you will need to SSH into.
+
+Today we will be using the Bootstrap node in your cluster as a jumpbox for our Labs. Normally a user would set this up on their local machi$
+
+### SSH into your Bootstrap Node
+Navigate to the Lab Assignments spreadsheet that was given to you by your Lab instructor. SSH into the bootstrap using the Public IP
+```
+$ ssh centos@<BOOTSTRAP_PUBLIC_IP>
+Password: <Provided by Instructor>
+```
+Follow the steps above on setting up the DC/OS CLI, except use LINUX as your operating system.
 
 ### Tour DC/OS Catalog
 

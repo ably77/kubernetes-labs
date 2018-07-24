@@ -64,7 +64,7 @@ The output should be a list of nodes in the cluster:
   10.0.2.100   10.0.2.100  94141db5-28df-4194-a1f2-4378214838a7-S4   agent            aws/us-west-2  aws/us-west-2a
 ```
 
-## Do the labs with the Bootstrap as a bastion host:
+## Optional: Do the labs with the Bootstrap as a bastion host:
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 

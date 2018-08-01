@@ -10,11 +10,11 @@ Today we will be simulating a predictive streaming application, more specificall
 ### Data Set
 The raw dataset we will be using in our load generator is from (here)https://github.com/h2oai/h2o-2/wiki/Hacking-Airline-DataSet-with-H2O]
 
-### Architecture
+### Lab 8 - Kafka Streams Application
 
-We will simulate an incoming real-time data stream by using the `load-generator.yaml` below that is a docker container built to send data to Confluent Kafka running on DC/OS:
+We will simulate an incoming real-time data stream by using the `load-generator.yaml` below that is a docker container built to send data to Confluent Kafka running on DC/OS. From the Kafka stream, we have an Airline Prediction app that will make predictions on flight delays based on incoming data.
 
-Save this app definition below as `load-generator.yaml`:
+### Explore Workload Generator Deployment configuration
 ```
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -35,9 +35,8 @@ spec:
         image: greshwalk/kafka-streams-workload-generator:latest
 ```
 
-The airline prediction microservice `airline-prediction.yaml` below is a docker container built to read directly off of the DC/OS Kafka broker endpoints to make analytic predictions on flight status:
-
-Save this app definition below as `airline-prediction.yaml`
+### Explore Airline Prediction Deployment configuration
+The Airline Prediction microservice is a docker container built to read directly off of the DC/OS Kafka broker endpoints to make analytic predictions on flight status:
 ```
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -60,27 +59,36 @@ spec:
 
 ## Getting Started
 
-First, we need to deploy Confluent Kafka
+### Step 1: Deploy Confluent Kafka
 ```
-dcos package install confluent-kafka
+$ dcos package install confluent-kafka --yes
 ```
 
+Wait for the installation to complete, you can monitor by using:
+```
+$ dcos confluent-kafka plan status deploy
+```
+
+### Step 2: Create Confluent Kafka Topics
 Once Confluent Kafka is installed, create two topics called `AirlineOutputTopic` and `AirlineInputTopic`
 ```
-dcos confluent-kafka --name confluent-kafka topic create AirlineOutputTopic --partitions 10 --replication 3
-dcos confluent-kafka --name confluent-kafka topic create AirlineInputTopic --partitions 10 --replication 3
+$ dcos confluent-kafka --name confluent-kafka topic create AirlineOutputTopic --partitions 10 --replication 3
+$ dcos confluent-kafka --name confluent-kafka topic create AirlineInputTopic --partitions 10 --replication 3
 ```
 
+### Step 3: Deploy Load Generator Service
 Deploy the load generator service defined in the Architecture section above:
 ```
-kubectl create -f load-generator.yaml
+kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/load-generator.yaml
 ```
 
+### Step 4: Deploy Airline Prediction Service
 Deploy the predictive streaming application defined in the Architecture section above:
 ```
-kubectl create -f airline-prediction.yaml
+kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/airline-prediction.yaml
 ```
 
+### Step 5: Validate App is Working
 Navigate to the K8s UI to see the log output of the running app:
 
 If you haven't already, run:
@@ -119,7 +127,7 @@ $ kubectl get pods
 $ kubectl logs -f kafka-streams-<PodID>
 ```
 
-### Cleanup
+### Step 7: Cleanup
 ```
 $ kubectl get deployments
 

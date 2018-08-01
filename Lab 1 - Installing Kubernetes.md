@@ -64,7 +64,9 @@ The output should be a list of nodes in the cluster:
   10.0.2.100   10.0.2.100  94141db5-28df-4194-a1f2-4378214838a7-S4   agent            aws/us-west-2  aws/us-west-2a
 ```
 
-## Optional: Do the labs with the Bootstrap as a bastion host:
+## Optional: Set Up DC/OS Command Line on the DC/OS Bootstrap Bastion Host
+
+### Use this method if you for some reason cannot install the DC/OS CLI onto your local machine
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 

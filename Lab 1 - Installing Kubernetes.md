@@ -1,4 +1,4 @@
-## Set Up DC/OS Command Line on your Local Machine
+## Step 1: Set Up DC/OS Command Line on your Local Machine
 
 Set up the DC/OS command line by clicking on the top left and choosing "install CLI"
 
@@ -66,7 +66,7 @@ The output should be a list of nodes in the cluster:
 
 ### Optional: Set Up DC/OS Command Line on the DC/OS Bootstrap Bastion Host
 
-### Use this method if you for some reason cannot install the DC/OS CLI onto your local machine such as firewall rules that are out of your control
+#### Use this method if you for some reason cannot install the DC/OS CLI onto your local machine such as firewall rules that are out of your control
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 
@@ -86,17 +86,17 @@ Your instructor will give you a tour of DC/OS UI and catalog.
 
 
 
-## Install Kubernetes 
+## Step 2: Install Kubernetes 
 To begin we will be deploying Kubernetes v1.10.3. The latest is 1.10.5, however we will first deploy 1.10.3 so that we can show the non-disruptive upgrade to 1.10.5 in a later lab.
 
 To install Kubernetes enter this command into your terminal
 
 ```
-dcos package install kubernetes --package-version=1.1.0-1.10.3
+dcos package install kubernetes --package-version=1.1.0-1.10.3 --yes
 ```
 **NOTE:** If you attempt to install Kubernetes from the GUI, install the CLI on your local machine with the following command:
 ```
-dcos package install kubernetes --cli --package-version=1.1.0-1.10.3
+dcos package install kubernetes --cli --package-version=1.1.0-1.10.3 --yes
 ```
 
 You can see the installation runbook automation and status of installation of each component with this command
@@ -186,7 +186,7 @@ kubectl version
 ## Connecting kubectl to DC/OS
 Deploy Marathon-LB:
 ```
-dcos package install marathon-lb
+dcos package install marathon-lb --yes
 ```
 
 Save this json as `kubectl-proxy.json` on your local machine:

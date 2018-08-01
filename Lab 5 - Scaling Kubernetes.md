@@ -1,31 +1,32 @@
 ## Scaling to More Nodes
 
-Sometimes you need more Kubernetes infrastructure to run more applications. DC/OS can easily scale the cluster. 
+Sometimes you need more Kubernetes infrastructure to run more applications. DC/OS can easily scale the cluster. In this lab we will scale the current Kubernetes deployment for our next labs. We will show you how to scale Kubernetes through the GUI as well as the CLI.
 
-There are several ways to scale Kubernetes in DC/OS. 
+Parameters to be changed:
+-  "node_count": 2
+-  "public_node_count": 1
 
-## From the UI
+
+## Lab 5a: From the UI
 
 From the UI, go to Services > Kubernetes and choose "Edit" in top right. 
 
-Under "kubernetes" in left hand menu, change the number of "node count" to 2
+Under "kubernetes" in left hand menu, change the number of "node_count" to 2 and "public_node_count" to 1
 
 ![](https://i.imgur.com/0YJxn1r.png)
 
-## From the CLI
+## Lab 5b: From the CLI
 
 Export the current package configuration into a JSON file called config.json
-
 ```
 $ dcos kubernetes describe > config.json
 ```
 
-Use an editor such as vi to change the config file and update the "node_count" to the new number of nodes
-
+Use an editor such as vi to change the config file and update the `"node_count": 2` and `"public_node_count": 1`
 ```
 "kubernetes": {
     "cloud_provider": "(none)",
-    "high_availability": false,
+    "high_availability": true,
     "network_provider": "dcos",
     "node_count": 2,
     "public_node_count": 1,
@@ -39,7 +40,6 @@ Use an editor such as vi to change the config file and update the "node_count" t
 ```
 
 Scale the cluster 
-
 ```
 dcos kubernetes update --options=config.json
 ```

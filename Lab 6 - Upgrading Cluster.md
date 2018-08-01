@@ -41,7 +41,7 @@ Are you sure you want to continue? [yes/no] yes
 2018/03/01 15:41:56 update complete!
 ```
 
-## Validation:
+## Step 4: Validation:
 
 **Method 1:** If you monitor the Kubernetes framework through the DC/OS UI you will be able to see the Kubernetes framework upgrading in a rolling non-disruptive fashion
 

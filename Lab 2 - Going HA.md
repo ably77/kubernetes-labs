@@ -1,3 +1,13 @@
+# Lab 2 - Going HA
+
+In this lab we will go through both GUI and CLI methods for upgrading a Kubernetes cluster on DC/OS to be Highly Available
+
+By default, the HA option in DC/OS will configure:
+- 3x etcd instances
+- 3x kube-apiserver instances
+- 3x kube-scheduler instances
+- 3x kube-controller-manager instances
+
 ### Making Kubernetes Highly Available through the GUI
 
 You can choose to make Kubernetes on DC/OS high availability (HA) at the time of deployment. However, you can also make non-HA clusters into HA by editing and saving the configuration. 

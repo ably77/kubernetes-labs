@@ -64,13 +64,13 @@ The output should be a list of nodes in the cluster:
   10.0.2.100   10.0.2.100  94141db5-28df-4194-a1f2-4378214838a7-S4   agent            aws/us-west-2  aws/us-west-2a
 ```
 
-## Optional: Set Up DC/OS Command Line on the DC/OS Bootstrap Bastion Host
+### Optional: Set Up DC/OS Command Line on the DC/OS Bootstrap Bastion Host
 
-### Use this method if you for some reason cannot install the DC/OS CLI onto your local machine
+### Use this method if you for some reason cannot install the DC/OS CLI onto your local machine such as firewall rules that are out of your control
 
 The instructor will give you access to IP address and credentials that you will need to SSH into.
 
-You should use this option if stuck behind firewall rules that are out of your control. Note that if you use the Bootstrap node for these labs the Kubernetes dashboard will not work by default, unless you set something up like a VNC server
+Note that if you use the Bootstrap node for these labs the Kubernetes dashboard will not work by default, unless you set something up like a VNC server
 
 ### SSH into your Bootstrap Node
 Navigate to the Lab Assignments spreadsheet that was given to you by your Lab instructor. SSH into the bootstrap using the Public IP
@@ -83,6 +83,8 @@ Follow the steps above on setting up the DC/OS CLI, except use LINUX as your ope
 ### Tour DC/OS Catalog
 
 Your instructor will give you a tour of DC/OS UI and catalog. 
+
+
 
 ## Install Kubernetes 
 To begin we will be deploying Kubernetes v1.10.3. The latest is 1.10.5, however we will first deploy 1.10.3 so that we can show the non-disruptive upgrade to 1.10.5 in a later lab.
@@ -164,6 +166,16 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/a
 sudo apt-get update
 sudo apt-get install -y kubectl
 ```
+
+**For Windows** installation:
+1. Download the latest release v1.11.0 from this [link](https://storage.googleapis.com/kubernetes-release/release/v1.11.0/bin/windows/amd64/kubectl.exe)
+
+Or if you have curl installed, use this command:
+```
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.11.0/bin/windows/amd64/kubectl.exe
+```
+
+2. Add the binary in to your PATH.
 
 Confirm that kubectl is installed and in path /usr/local/bin (it will say it is not connected to dcos cluster yet which is ok)
 

@@ -1,11 +1,11 @@
-## Automated Self Healing
+# Automated Self Healing
 
 Kubernetes with DC/OS includes automated self-healing of Kubernetes infrastructure. 
 
 We can demo this by killing some of the Kubernetes framework components, as well as nodes. 
 
-In the command line enter
-
+### List your DC/OS Tasks
+In the command line enter:
 ```
 dcos task
 ```
@@ -36,10 +36,15 @@ kubernetes                          10.0.5.243  root    R    kubernetes.d7696234
 kubernetes-proxy                    10.0.4.167  root    R    kubernetes-proxy.65c752a2-8394-11e8-95d4-de01896a7e14                     4f6be22e-f057-4226-9c40-190496ea9218-S6   aws/us-west-2  aws/us-west-2a
 ```
 
-### Kill etcd
+For our labs below we will use `dcos task exec` to manually kill processes within the container instances:
+```
+$ dcos task exec -it <TASK_NAME> <command>
+``` 
+
+### Lab 3a: Kill an  etcd instance
 Lets kill an instance of the etcd database to observe auto-healing capabilities:
 
-First we need to identify the etcd-0 PID value. In the example below the etcd PID value is 3:
+**Step 1:** First we need to identify the etcd-0 PID value. In the example below the etcd PID value is 3:
 ```
 $ dcos task exec -it etcd-0-peer ps ax
   PID TTY      STAT   TIME COMMAND
@@ -48,7 +53,8 @@ $ dcos task exec -it etcd-0-peer ps ax
  7008 pts/0    Ss+    0:00 /opt/mesosphere/active/mesos/libexec/mesos/mesos-cont
  7009 pts/0    R+     0:00 ps ax
  ```
- 
+
+**Step 2:** Navigate to the DC/OS UI:
 Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the terminal so you can see the components in the DC/OS UI. Use the search bar to search for etcd
 
 
@@ -57,10 +63,10 @@ Kill the etcd manually and watch the UI auto-heal the etcd instance:
 dcos task exec -it etcd-0-peer kill -9 3
 ```
 
-### Kill a Kubelet
+### Lab 3b: Kill a Kubelet
 Next, lets kill a Kubernetes node to observe auto-healing capabilities:
 
-First we need to identify the kube-node-0 PID value. Enter etcd PID value associated with the cmd: `sh -c ./bootstrap --resolve=false 2>&1  chmod +x kube`: In the example below the etcd PID value is 3:
+**Step 1:** First we need to identify the kube-node-0 PID value. Enter etcd PID value associated with the cmd: `sh -c ./bootstrap --resolve=false 2>&1  chmod +x kube`: In the example below the etcd PID value is 3:
 
 ```
 $ dcos task exec -it kube-node-0-kubelet ps ax
@@ -70,6 +76,7 @@ $ dcos task exec -it kube-node-0-kubelet ps ax
    10 ?        S      0:00 /bin/bash ./kubelet-wrapper.sh
 ```
 
+**Step 2:** Navigate to the DC/OS UI:
 Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the terminal so you can see the components in the DC/OS UI. Use the search bar to search for kube-node-0
 
 Kill the kubelet manually and watch the UI auto-heal the kubelet instance:

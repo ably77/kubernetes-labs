@@ -225,9 +225,7 @@ Navigate to the Marathon-LB service and determine:
 
 Connect kubectl to DC/OS:
 ```
-MARATHON-LB_PUBLIC_IP= <Insert Public IP of Marathon-LB Here>
-
-dcos kubernetes kubeconfig --insecure-skip-tls-verify --apiserver-url=https://$MARATHON-LB_PUBLIC_IP:6443
+dcos kubernetes kubeconfig --insecure-skip-tls-verify --apiserver-url=https://<MARATHON-LB_PUBLIC_IP>:6443
 ```
 
 Confirm connection:

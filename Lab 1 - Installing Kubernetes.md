@@ -137,7 +137,7 @@ When all steps are "COMPLETE", confirm that the "dcos kubernetes" CLI was instal
 dcos kubernetes
 ```
 
-## Install Kubernetes kubectl Command Line
+## Step 3: Install Kubernetes kubectl Command Line
 
 Install the Kubernetes command line by following instructions [here](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
@@ -183,7 +183,7 @@ Confirm that kubectl is installed and in path /usr/local/bin (it will say it is 
 kubectl version
 ```
 
-## Connecting kubectl to DC/OS
+## Step 4: Connecting kubectl to DC/OS
 Deploy Marathon-LB:
 ```
 dcos package install marathon-lb --yes
@@ -234,7 +234,7 @@ Confirm connection:
 kubectl get nodes
 ```
 
-## Kubernetes Dashboard (Official UI of Kubernetes)
+## Step 5: Kubernetes Dashboard (Official UI of Kubernetes)
 
 To access the dashboard run:
 

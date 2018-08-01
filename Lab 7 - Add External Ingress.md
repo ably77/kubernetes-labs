@@ -145,7 +145,7 @@ spec:
  
 Deploy Ingress Service:
 ```
-kubectl create -f https://github.com/ably77/kubernetes-labs/blob/master/resources/traefik-ingress.yaml
+kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/traefik-ingress.yaml
 ```
 
 ### Step 4 :Explore and Deploy Hello World deployment
@@ -217,7 +217,7 @@ spec:
 
 Deploy Hello World Ingress:
 ```
-kubectl create -f hw-ingress.yaml
+kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/hw-ingress.yaml
 ```
   
 ### Step 6: Access your Hello World Application

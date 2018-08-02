@@ -52,6 +52,7 @@ $ dcos task exec -i <TASK_NAME> <command>
 Lets kill an instance of the etcd database to observe auto-healing capabilities:
 
 **Step 1:** First we need to identify the etcd-0 PID value. In the example below the etcd PID value is 3:
+
 For Mac/Linux:
 ```
 dcos task exec -it etcd-0-peer ps ax
@@ -76,6 +77,7 @@ Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the termin
 
 
 Kill the etcd manually and watch the UI auto-heal the etcd instance:
+
 For Mac/Linux:
 ```
 dcos task exec -it etcd-0-peer kill -9 3
@@ -90,6 +92,7 @@ dcos task exec -i etcd-0-peer kill -9 3
 Next, lets kill a Kubernetes node to observe auto-healing capabilities:
 
 **Step 1:** First we need to identify the kube-node-0 PID value. Enter etcd PID value associated with the cmd: `sh -c ./bootstrap --resolve=false 2>&1  chmod +x kube`: In the example below the etcd PID value is 3:
+
 For Mac/Linux:
 ```
 dcos task exec -it kube-node-0-kubelet ps ax

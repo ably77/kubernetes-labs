@@ -61,19 +61,22 @@ spec:
 
 ### Step 1: Deploy Confluent Kafka
 ```
-$ dcos package install confluent-kafka --yes
+dcos package install confluent-kafka --yes
 ```
 
 Wait for the installation to complete, you can monitor by using:
 ```
-$ dcos confluent-kafka plan status deploy
+dcos confluent-kafka plan status deploy
 ```
 
 ### Step 2: Create Confluent Kafka Topics
 Once Confluent Kafka is installed, create two topics called `AirlineOutputTopic` and `AirlineInputTopic`
 ```
-$ dcos confluent-kafka --name confluent-kafka topic create AirlineOutputTopic --partitions 10 --replication 3
-$ dcos confluent-kafka --name confluent-kafka topic create AirlineInputTopic --partitions 10 --replication 3
+dcos confluent-kafka --name confluent-kafka topic create AirlineOutputTopic --partitions 10 --replication 3
+```
+
+```
+dcos confluent-kafka --name confluent-kafka topic create AirlineInputTopic --partitions 10 --replication 3
 ```
 
 ### Step 3: Deploy Load Generator Service
@@ -88,7 +91,12 @@ Deploy the predictive streaming application defined in the Architecture section 
 kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/airline-prediction.yaml
 ```
 
-### Step 5: Validate App is Working
+### Step 5: Confirm App Deployed
+```
+kubectl get pods
+```
+
+### Step 5: Check the App Logs for Output
 Navigate to the K8s UI to see the log output of the running app:
 
 If you haven't already, run:
@@ -121,9 +129,13 @@ Class probabilities: 0.5955978728809052,0.40440212711909485
 ```
 
 Alternatively you can also use the `kubectl log` command:
+List running pods:
 ```
-$ kubectl get pods
+kubectl get pods
+```
 
+Output logs in streaming format (-f):
+```
 $ kubectl logs -f kafka-streams-<PodID>
 ```
 
@@ -142,6 +154,7 @@ $ kubectl get pods
 $ dcos package uninstall confluent-kafka
 ```
 
-### Congratulations! You just deployed a microservice application on DC/OS that easily connects to a Confluent Kafka dataservice running on the same cluster!
+## Done with Lab 8
+You just deployed a microservice application on DC/OS that easily connects to a Confluent Kafka dataservice running on the same cluster!
 
 

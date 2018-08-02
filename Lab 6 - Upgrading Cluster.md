@@ -6,6 +6,11 @@ Below is information from documentation, which stronly suggest you backup before
 
 ### Step 1: View/List available package versions:
 ```
+dcos package describe kubernetes --package-versions
+```
+
+Output should be similar to below, listing all of the available Kubernetes versions on DC/OS
+```
 $ dcos package describe kubernetes --package-versions
 [
   "1.2.0-1.10.5",
@@ -21,10 +26,15 @@ $ dcos package describe kubernetes --package-versions
 ## Step 2: Update DC/OS Kubernetes CLI
 Before starting the update process, it is mandatory to update the CLI to the new version, in our case 1.2.0-1.10.5:
 ```
-$ dcos package install kubernetes --cli --package-version=1.2.0-1.10.5
+dcos package install kubernetes --cli --package-version=1.2.0-1.10.5
 ```
 
 ## Step 3: Initiate Upgrade:
+```
+dcos kubernetes update --package-version=1.2.0-1.10.5
+```
+
+Output should look similar to below:
 ```
 $ dcos kubernetes update --package-version=1.2.0-1.10.5
 About to start an update from version <CURRENT_VERSION> to <NEW_VERSION>
@@ -46,6 +56,10 @@ Are you sure you want to continue? [yes/no] yes
 **Method 1:** If you monitor the Kubernetes framework through the DC/OS UI you will be able to see the Kubernetes framework upgrading in a rolling non-disruptive fashion
 
 **Method 2:** Once the scheduler returns you can continue to use the below command:
+```
+dcos kubernetes plan status deploy
+```
+
 ```
 $ dcos kubernetes plan status deploy
 deploy (serial strategy) (IN_PROGRESS)
@@ -81,3 +95,11 @@ deploy (serial strategy) (IN_PROGRESS)
 │  └─ mark-kube-node-0-schedulable (PENDING)
 └─ public-node (serial strategy) (COMPLETE)
 ```
+
+Once complete you can run the command below to see the `VERSION` of your Kubernetes cluster
+```
+dcos package list
+```
+
+## Done with Lab 6
+If you are at this point you now have completed a non-disruptive upgrade of Kubernetes from 1.10.3 to 1.10.5. DC/OS makes it easy to perform upgrades and rollbacks for all of our frameworks including Kubernetes.

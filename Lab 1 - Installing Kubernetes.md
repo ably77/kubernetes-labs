@@ -75,7 +75,7 @@ Note that if you use the Bootstrap node for these labs the Kubernetes dashboard 
 ### SSH into your Bootstrap Node
 Navigate to the Lab Assignments spreadsheet that was given to you by your Lab instructor. SSH into the bootstrap using the Public IP
 ```
-$ ssh centos@<BOOTSTRAP_PUBLIC_IP>
+ssh centos@<BOOTSTRAP_PUBLIC_IP>
 Password: <Provided by Instructor>
 ```
 Follow the steps above on setting up the DC/OS CLI, except use LINUX as your operating system.
@@ -105,7 +105,7 @@ You can see the installation runbook automation and status of installation of ea
 dcos kubernetes plan status deploy
 ```
 
-It should look like this when completed
+Output should look similar to this:
 
 ```
 $ dcos kubernetes plan status deploy
@@ -247,3 +247,6 @@ Point your browser to:
 ```
 http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/http:kubernetes-dashboard:/proxy/
 ```
+
+## Done with Lab 1 - Installation
+You should now have a running Kubernetes cluster built on DC/OS! In the next labs we will go over Day 2 operational tasks such as Updating to HA, Component Failure, App Deployment, Scaling, and Upgrading your Kubernetes cluster

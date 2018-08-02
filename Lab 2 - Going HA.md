@@ -22,7 +22,12 @@ Under Kubernetes in left hand menu, choose the high availability box
 
 ![](https://i.imgur.com/PkGHHlJ.png)
 
-Save configuration and watch new components come online with the following command or in the GUI. Output should look like below:
+Save configuration and watch new components come online with the following command or in the GUI.
+```
+dcos kubernetes plan status deploy
+``` 
+
+Output should look like below:
 
 ```
 $ dcos kubernetes plan status deploy
@@ -119,7 +124,6 @@ $ cat options.json
 ```
 
 Update the Kubernetes Framework:
-
 ```
 dcos kubernetes update --options=options.json
 ```
@@ -143,7 +147,11 @@ Are you sure you want to continue? [yes/no] yes
 ```
 
 Validate update against the plan:
+```
+dcos kubernetes plan status deploy
+```
 
+Output should look similar to below when complete:
 ```
 $ dcos kubernetes plan status deploy
 deploy (serial strategy) (COMPLETE)
@@ -176,4 +184,7 @@ deploy (serial strategy) (COMPLETE)
    ├─ mandatory-addons-0:[dashboard] (COMPLETE)
    └─ mandatory-addons-0:[ark] (COMPLETE)
 ```
+
+## Done with Lab 2
+Updating to High Availability is simple with Kubernetes on DC/OS. Small projects can start as non-HA to save resources and update to HA when moving projects to production.
 

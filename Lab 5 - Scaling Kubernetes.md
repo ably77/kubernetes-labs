@@ -19,7 +19,7 @@ Under "kubernetes" in left hand menu, change the number of "node_count" to 2 and
 
 Export the current package configuration into a JSON file called config.json
 ```
-$ dcos kubernetes describe > config.json
+dcos kubernetes describe > config.json
 ```
 
 Use an editor such as vi to change the config file and update the `"node_count": 2` and `"public_node_count": 1`
@@ -39,7 +39,27 @@ Use an editor such as vi to change the config file and update the `"node_count":
     }
 ```
 
-Scale the cluster 
+Scale the cluster: 
 ```
 dcos kubernetes update --options=config.json
 ```
+
+Verify from the UI:
+Navigate to the DC/OS UI --> Services --> Kubernetes
+
+Here you can see the new kube-node-1 as well as kube-public-node-0 that you just scaled
+
+Verify from the CLI:
+```
+dcos kubernetes plan status deploy
+```
+
+## Done with Lab 5
+After this lab you should have built a Kubernetes Cluster with these components:
+- Highly Available Control Plane
+	- 3x etcd instances
+	- 3x kube-apiserver instances
+	- 3x kube-scheduler instances
+	- 3x kube-controller-manager instances
+- 2x Kubernetes Worker Nodes
+- 1x Kubernetes Public Node

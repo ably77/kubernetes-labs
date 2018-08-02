@@ -37,14 +37,31 @@ kubernetes-proxy                    10.0.4.167  root    R    kubernetes-proxy.65
 ```
 
 For our labs below we will use `dcos task exec` to manually kill processes within the container instances:
+
+For Mac/Linux:
 ```
 $ dcos task exec -it <TASK_NAME> <command>
 ``` 
+
+For Windows:
+```
+$ dcos task exec -i <TASK_NAME> <command>
+```
 
 ### Lab 3a: Kill an  etcd instance
 Lets kill an instance of the etcd database to observe auto-healing capabilities:
 
 **Step 1:** First we need to identify the etcd-0 PID value. In the example below the etcd PID value is 3:
+For Mac/Linux:
+```
+dcos task exec -it etcd-0-peer ps ax
+```
+For Windows:
+```
+dcos task exec -i etcd-0-peer ps ax
+```
+
+Output should look similar to below:
 ```
 $ dcos task exec -it etcd-0-peer ps ax
   PID TTY      STAT   TIME COMMAND
@@ -59,15 +76,31 @@ Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the termin
 
 
 Kill the etcd manually and watch the UI auto-heal the etcd instance:
+For Mac/Linux:
 ```
 dcos task exec -it etcd-0-peer kill -9 3
+```
+
+For Windows:
+```
+dcos task exec -i etcd-0-peer kill -9 3
 ```
 
 ### Lab 3b: Kill a Kubelet
 Next, lets kill a Kubernetes node to observe auto-healing capabilities:
 
 **Step 1:** First we need to identify the kube-node-0 PID value. Enter etcd PID value associated with the cmd: `sh -c ./bootstrap --resolve=false 2>&1  chmod +x kube`: In the example below the etcd PID value is 3:
+For Mac/Linux:
+```
+dcos task exec -it kube-node-0-kubelet ps ax
+```
 
+For Windows:
+```
+dcos task exec -i kube-node-0-kubelet ps ax
+```
+
+Output should be similar to below:
 ```
 $ dcos task exec -it kube-node-0-kubelet ps ax
   PID TTY      STAT   TIME COMMAND
@@ -81,6 +114,14 @@ Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the termin
 
 Kill the kubelet manually and watch the UI auto-heal the kubelet instance:
 
+For Mac/Linux:
 ```
 dcos task exec -it kube-node-0-kubelet kill -9 3
 ```
+
+For Windows:
+```
+dcos task exec -i kube-node-0-kubelet kill -9 3
+```
+## Done with Lab 3
+In the DC/OS UI you should be able to navigate to the Kubernetes service and watch these components of Kubernetes fail as we kill the processes. DC/OS is constantly monitoring your Kubernetes cluster so that critical components are auto-healed in failure scenarios

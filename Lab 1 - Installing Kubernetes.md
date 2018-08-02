@@ -183,13 +183,62 @@ Confirm that kubectl is installed and in path /usr/local/bin (it will say it is 
 kubectl version
 ```
 
-## Step 4: Connecting kubectl to DC/OS
+## Step 5: Deploy Marathon-LB
 Deploy Marathon-LB:
 ```
 dcos package install marathon-lb --yes
 ```
 
-Save this json as `kubectl-proxy.json` on your local machine:
+### Determine the Public IP of Marathon-LB
+We will need to determine the IP of marathon-lb which we will use later to connect our local kubectl to our cluster. We will do so by deploying a Marathon app and cross checking with our Marathon-LB service in the UI
+
+Take a look at the example app definition:
+```
+{
+  "id": "/get-public-agent-ip",
+  "cmd": "PUBLIC_IP=`curl http://169.254.169.254/latest/meta-data/public-ipv4` && PRIVATE_IP=`hostname -i` && echo $PUBLIC_IP && echo $PRIVATE_IP && sleep 3600",
+  "cpus": 0.25,
+  "mem": 32,
+  "instances": 2,
+  "acceptedResourceRoles": [
+    "slave_public"
+  ],
+  "constraints": [
+    [
+      "hostname",
+      "UNIQUE"
+    ]
+  ]
+}
+```
+
+Deploy the get-public-agent-ip app:
+```
+dcos marathon app add https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/findpublic_ips.json
+```
+
+Determine Public IPs of your Cluster:
+```
+task_list=`dcos task get-public-agent-ip | grep get-public-agent-ip | awk '{print $5}'`
+
+for task_id in $task_list;
+do
+    public_ip=`dcos task log $task_id stdout | tail -2`
+
+    echo
+    echo " Public agent node found! public IP is:"
+    echo "$public_ip"
+
+done
+```
+
+Cross check your Marathon-LB Private IP (Observed in the Services UI) with the matching Public IP output and set the variable for later use:
+```
+MARATHON_LB_PUBLIC_IP=<INSERT_MARATHON_LB_PUBLIC_IP_HERE>
+```
+
+## Step 6: Connect kubectl to cluster
+Examine the kubectl-proxy app definition:
 ```
 {
   "id": "/kubectl-proxy",
@@ -218,14 +267,14 @@ Save this json as `kubectl-proxy.json` on your local machine:
 
 Deploy the kubectl-proxy service:
 ```
-dcos marathon app add kubectl-proxy.json
+dcos marathon app add https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/kubectl-proxy.json
 ```
 
 Navigate to the Marathon-LB service and determine:
 
 Connect kubectl to DC/OS:
 ```
-dcos kubernetes kubeconfig --insecure-skip-tls-verify --apiserver-url=https://<MARATHON-LB_PUBLIC_IP>:6443
+dcos kubernetes kubeconfig --insecure-skip-tls-verify --apiserver-url=https://$MARATHON_LB_PUBLIC_IP:6443
 ```
 
 Confirm connection:

@@ -286,7 +286,7 @@ Confirm connection:
 kubectl get nodes
 ```
 
-## Step 5: Kubernetes Dashboard (Official UI of Kubernetes)
+## Step 7: Kubernetes Dashboard (Official UI of Kubernetes)
 
 To access the dashboard run:
 

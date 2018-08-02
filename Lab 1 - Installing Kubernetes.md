@@ -217,10 +217,13 @@ Deploy the get-public-agent-ip app:
 dcos marathon app add https://raw.githubusercontent.com/ably77/kubernetes-labs/master/resources/findpublic_ips.json
 ```
 
-Determine Public IPs of your Cluster:
+Set a task variable:
 ```
 task_list=`dcos task get-public-agent-ip | grep get-public-agent-ip | awk '{print $5}'`
+```
 
+Determine Public IPs of your Cluster:
+```
 for task_id in $task_list;
 do
     public_ip=`dcos task log $task_id stdout | tail -2`

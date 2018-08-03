@@ -223,12 +223,12 @@ kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/maste
 ### Step 6: Access your Hello World Application
 We can access Hello World Application by accessing `http://<PUBLIC_KUBELET_IP>`. Here is an easy way to get the Public Kubelet IP:
 ```
-PUBLIC_KUBELET_IP=dcos task exec -it kube-node-public-0-kubelet curl ifconfig.co
+dcos task exec -it kube-node-public-0-kubelet curl ifconfig.co
 ```
 
 Open in your browser:
 ```
-open http://$PUBLIC_KUBELET_IP
+open http://<PUBLIC_KUBELET_IP>
 ```
 
 ## Done with Lab 7

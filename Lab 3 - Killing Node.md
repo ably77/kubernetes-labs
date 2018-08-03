@@ -37,34 +37,21 @@ kubernetes-proxy                    10.0.4.167  root    R    kubernetes-proxy.65
 ```
 
 For our labs below we will use `dcos task exec` to manually kill processes within the container instances:
-
-For Mac/Linux:
-```
-$ dcos task exec -it <TASK_NAME> <command>
-``` 
-
-For Windows:
 ```
 $ dcos task exec -i <TASK_NAME> <command>
-```
+``` 
 
 ### Lab 3a: Kill an  etcd instance
 Lets kill an instance of the etcd database to observe auto-healing capabilities:
 
 **Step 1:** First we need to identify the etcd-0 PID value. In the example below the etcd PID value is 3:
-
-For Mac/Linux:
-```
-dcos task exec -it etcd-0-peer ps ax
-```
-For Windows:
 ```
 dcos task exec -i etcd-0-peer ps ax
 ```
 
 Output should look similar to below:
 ```
-$ dcos task exec -it etcd-0-peer ps ax
+$ dcos task exec -i etcd-0-peer ps ax
   PID TTY      STAT   TIME COMMAND
     1 ?        Ss     0:00 /opt/mesosphere/active/mesos/libexec/mesos/mesos-cont
     3 ?        Sl     2:04 ./etcd-v3.3.3-linux-amd64/etcd --name=infra0 --cert-f
@@ -77,13 +64,6 @@ Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the termin
 
 
 Kill the etcd manually and watch the UI auto-heal the etcd instance:
-
-For Mac/Linux:
-```
-dcos task exec -it etcd-0-peer kill -9 3
-```
-
-For Windows:
 ```
 dcos task exec -i etcd-0-peer kill -9 3
 ```
@@ -92,20 +72,13 @@ dcos task exec -i etcd-0-peer kill -9 3
 Next, lets kill a Kubernetes node to observe auto-healing capabilities:
 
 **Step 1:** First we need to identify the kube-node-0 PID value. Enter etcd PID value associated with the cmd: `sh -c ./bootstrap --resolve=false 2>&1  chmod +x kube`: In the example below the etcd PID value is 3:
-
-For Mac/Linux:
-```
-dcos task exec -it kube-node-0-kubelet ps ax
-```
-
-For Windows:
 ```
 dcos task exec -i kube-node-0-kubelet ps ax
 ```
 
 Output should be similar to below:
 ```
-$ dcos task exec -it kube-node-0-kubelet ps ax
+$ dcos task exec -i kube-node-0-kubelet ps ax
   PID TTY      STAT   TIME COMMAND
     1 ?        Ss     0:00 /opt/mesosphere/active/mesos/libexec/mesos/mesos-cont
     3 ?        S      0:00 sh -c ./bootstrap --resolve=false 2>&1  chmod +x kube
@@ -116,13 +89,6 @@ $ dcos task exec -it kube-node-0-kubelet ps ax
 Navigate to the DC/OS UI > Services > Kubernetes tab and open next to the terminal so you can see the components in the DC/OS UI. Use the search bar to search for kube-node-0
 
 Kill the kubelet manually and watch the UI auto-heal the kubelet instance:
-
-For Mac/Linux:
-```
-dcos task exec -it kube-node-0-kubelet kill -9 3
-```
-
-For Windows:
 ```
 dcos task exec -i kube-node-0-kubelet kill -9 3
 ```

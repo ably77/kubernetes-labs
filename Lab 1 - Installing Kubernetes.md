@@ -235,6 +235,28 @@ do
 done
 ```
 
+Output should look similar to below:
+```
+ Public agent node found! public IP is:
+54.202.144.62
+10.0.0.19
+
+ Public agent node found! public IP is:
+54.184.52.185
+10.0.2.153
+```
+
+Run the command below to get the Private IP of marathon-lb: 
+```
+dcos task | grep marathon-lb
+```
+
+Output should look similar to below:
+```
+$ dcos task | grep marathon-lb
+marathon-lb                         10.0.0.19   root    R    marathon-lb.ff243a1c-96a3-11e8-a075-f254913ed785                                      34525407-2972-44ab-af61-80e6ec47f28e-S1  aws/us-west-2  aws/us-west-2b
+```
+
 Cross check your Marathon-LB Private IP (Observed in the Services UI) with the matching Public IP output and set the variable for later use:
 ```
 MARATHON_LB_PUBLIC_IP=<INSERT_MARATHON_LB_PUBLIC_IP_HERE>

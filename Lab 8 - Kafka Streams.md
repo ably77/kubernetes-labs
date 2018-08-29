@@ -136,22 +136,22 @@ kubectl get pods
 
 Output logs in streaming format (-f):
 ```
-$ kubectl logs -f kafka-streams-<PodID>
+kubectl logs -f kafka-streams-<PodID>
 ```
 
 ### Step 7: Cleanup
 ```
-$ kubectl get deployments
+kubectl get deployments
 
-$ kubectl delete deployment kafka-streams
+kubectl delete deployment kafka-streams
 
-$ kubectl delete deployment kafka-streams-workload-generator
+kubectl delete deployment kafka-streams-workload-generator
 
-$ kubectl get deployments
+kubectl get deployments
 
-$ kubectl get pods
+kubectl get pods
 
-$ dcos package uninstall confluent-kafka
+dcos package uninstall confluent-kafka
 ```
 
 ## Done with Lab 8

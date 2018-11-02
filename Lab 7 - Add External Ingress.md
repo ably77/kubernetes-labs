@@ -19,7 +19,7 @@ From the UI, go to Services > kubernetes-cluster and select edit:
 
 Under "kubernetes" in left hand menu, make your cluster adjustments
 
-For this exercise, change the number of `private_node_count` to 2 and `public_node_count` to 1:
+For this exercise, change the number of `public_node_count` to 1:
 ![](https://github.com/ably77/kubernetes-labs/blob/master/resources/images/scaling2.png)
 
 Click Review and Run > Run Service to complete scaling your Kubernetes cluster. Check the UI afterwards to see that the cluster scaled up a public node `kube-node-public-0-kubelet`

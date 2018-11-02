@@ -1,11 +1,6 @@
 [Kubernetes Service Documentation - External Ingress](https://docs.mesosphere.com/services/kubernetes/1.2.0-1.10.5/ingress/)
 
 # Lab 7 - Adding External Ingress and Exposing an Application
-For this Lab we will install Traefik as our Kubernetes Ingress Controller to show a Hello World example
-
-### Step 1: Scale Public Agent Node
-If you havent already done so, scale your Kubernetes `"public_node_count": 1,`. Go back to the section on scaling for detailed instructions on how to scale/update the Kubernetes Framework
-
 If you want to expose HTTP/S (L7) apps to the outside world - at least outside the DC/OS cluster - you should create a Kubernetes Ingress resource. The package does not install such controller by default, so we give you the freedom to choose what Ingress controller your organization wants to use.
 Options:
 - Traefik
@@ -13,6 +8,21 @@ Options:
 - HAProxy
 - Envoy
 - Istio
+
+For this Lab we will install Traefik as our Kubernetes Ingress Controller to show a Hello World example
+
+### Step 1: Scale Public Agent Node
+If you havent already done so, scale your Kubernetes `"public_node_count": 1,`. Go back to the section on scaling for detailed instructions on how to scale/update the Kubernetes Framework using the CLI, but below we will show how to use the UI method
+
+From the UI, go to Services > kubernetes-cluster and select edit:
+![](https://github.com/ably77/kubernetes-labs/blob/master/resources/images/scaling1.png)
+
+Under "kubernetes" in left hand menu, make your cluster adjustments
+
+For this exercise, change the number of `private_node_count` to 2 and `public_node_count` to 1:
+![](https://github.com/ably77/kubernetes-labs/blob/master/resources/images/scaling2.png)
+
+Click Review and Run > Run Service to complete scaling your Kubernetes cluster. Check the UI afterwards to see that the cluster scaled up a public node `kube-node-public-0-kubelet`
 
 ### Step 2:Explore and Deploy Traefik Ingress Controller
 

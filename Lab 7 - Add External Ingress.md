@@ -4,7 +4,7 @@
 For this Lab we will install Traefik as our Kubernetes Ingress Controller to show a Hello World example
 
 ### Step 1: Scale Public Agent Node
-If you havent already done so, scale your Kubernetes `"public_node_count": 1,`. Go back to Lab 5 for detailed instructions on how to scale/update the Kubernetes Framework
+If you havent already done so, scale your Kubernetes `"public_node_count": 1,`. Go back to the section on scaling for detailed instructions on how to scale/update the Kubernetes Framework
 
 If you want to expose HTTP/S (L7) apps to the outside world - at least outside the DC/OS cluster - you should create a Kubernetes Ingress resource. The package does not install such controller by default, so we give you the freedom to choose what Ingress controller your organization wants to use.
 Options:

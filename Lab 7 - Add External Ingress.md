@@ -232,8 +232,23 @@ kubectl create -f https://raw.githubusercontent.com/ably77/kubernetes-labs/maste
   
 ### Step 6: Access your Hello World Application
 We can access Hello World Application by accessing `http://<PUBLIC_KUBELET_IP>`. Here is an easy way to get the Public Kubelet IP:
+
 ```
-dcos task exec -it kube-node-public-0-kubelet curl ifconfig.co
+dcos task | grep kube-node-public-0-kubelet
+```
+
+Output should look similar to below:
+```
+$ dcos task exec -it kube-node-public-0-kubelet curl ifconfig.co
+There are multiple tasks with ID matching [kube-node-public-0-kubelet]. Please choose one:
+    kubernetes-cluster2__kube-node-public-0-kubelet__a9728bee-0425-429e-a133-6f5972e78c61
+    kubernetes-cluster__kube-node-public-0-kubelet__605a86ff-af95-4a3b-b067-ec05634583db
+```
+
+Note: For 1.12 Mesosphere Kubernetes Engine (MKE) users, you may need to use the `TASK ID` instead of `NAME` to avoid conflicts
+
+```
+dcos task exec -it kubernetes-cluster__kube-node-public-0 curl ifconfig.co
 ```
 
 Open in your browser:

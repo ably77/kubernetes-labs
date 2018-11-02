@@ -1,7 +1,7 @@
 [Kubernetes Service Documentation - External Ingress](https://docs.mesosphere.com/services/kubernetes/1.2.0-1.10.5/ingress/)
 
 # Lab 7 - Adding External Ingress and Exposing an Application
-If you want to expose HTTP/S (L7) apps to the outside world - at least outside the DC/OS cluster - you should create a Kubernetes Ingress resource. The package does not install such controller by default, so we give you the freedom to choose what Ingress controller your organization wants to use.
+If you want to expose HTTP/S (L7) apps to the outside world - at least outside the DC/OS cluster - you need to create a Kubernetes Ingress Controller resource. The package does not install such controller by default, so we give you the freedom to choose what Ingress controller your organization wants to use.
 Options:
 - Traefik
 - NGINX
